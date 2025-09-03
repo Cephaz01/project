@@ -1,0 +1,919 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+
+  background: #ffffff;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #fff;
+}
+
+body.dark .card,
+body.dark .billing-table,
+body.dark .settings-container {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+/* Navbar */
+.navbar {
+  background: #333;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+/* Login */
+.login-container {
+  max-width: 300px;
+  margin: 80px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-container input, .login-container button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+button {
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #218838;
+}
+
+/* Dashboard Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap: 15px;
+  margin: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Content */
+.content {
+  padding: 20px;
+}
+
+/* Messages */
+.error { color: red; }
+.success { color: green; }
+/* ===== LOGIN PAGE STYLING ===== */
+.login-container {
+  max-width: 360px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+.login-container:hover {
+  transform: translateY(-3px);
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-container input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.login-container input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.4);
+}
+
+.login-container button {
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.login-container button:hover {
+  background: #218838;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .login-container {
+    margin: 40px 20px;
+    padding: 20px;
+  }
+}
+  .dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background: #2c3e50;
+  color: white;
+  width: 220px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 12px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.sidebar ul li.active, .sidebar ul li:hover {
+  background: #34495e;
+}
+
+/* Main Content */
+main {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Navbar */
+.navbar {
+  background: white;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* Pages */
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.5s ease; }
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+canvas {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+
+/* Billing Page Styles */
+#billing {
+  padding: 20px;
+}
+
+#billing h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+#rechargeForm {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#rechargeForm input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+#rechargeForm button {
+  padding: 10px 15px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#rechargeForm button:hover {
+  background: #2ecc71;
+}
+
+#rechargeMessage {
+  margin-top: 10px;
+  font-weight: bold;
+  color: green;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#billingHistory {
+  list-style: none;
+  padding: 0;
+}
+
+#billingHistory li {
+  padding: 8px;
+  background: #f4f6f8;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+#billingHistory li:hover {
+  transform: scale(1.02);
+  background: #e9f5f0;
+}
+
+
+.chart-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.chart-container canvas {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.success {
+  color: green;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+
+.chart-container {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.billing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.billing-table th, .billing-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.billing-table th {
+  background: #4CAF50;
+  color: white;
+}
+
+.view-btn, .download-btn {
+  padding: 5px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-btn {
+  background: #2196F3;
+  color: white;
+}
+
+.download-btn {
+  background: #FF9800;
+  color: white;
+}
+
+.view-btn:hover {
+  background: #0b7dda;
+}
+
+.download-btn:hover {
+  background: #e68900;
+}
+
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+  color: #4CAF50;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.8);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+
+.receipt-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.receipt-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.receipt-content h2 {
+  margin-bottom: 10px;
+}
+
+.receipt-content button {
+  margin: 5px;
+  padding: 8px 15px;
+  border: none;
+  background: #3498db;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.receipt-content button:hover {
+  background: #2980b9;
+}
+
+
+.billing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.billing-table th, .billing-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.billing-table th {
+  background-color: #3498db;
+  color: white;
+}
+
+.billing-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.billing-table button {
+  margin: 2px;
+  padding: 4px 8px;
+  border: none;
+  background: #3498db;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.billing-table button:hover {
+  background: #2980b9;
+}
+
+
+.settings-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.settings-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .settings-container {
+  background: #1e1e1e;
+}
+
+/* Auth Container */
+.auth-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.auth-container button:hover {
+  background: #2980b9;
+}
+
+.auth-links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-links a {
+  color: #3498db;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.error { color: #ff4d4d; margin-top: 10px; font-size: 14px; }
+.success { color: green; margin-top: 10px; font-size: 14px; }
+
+/* Dark Mode Support */
+body.dark-mode .auth-container,
+body.dark-mode .modal-content {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+body.dark-mode input {
+  background: #2c2c2c;
+  border: 1px solid #555;
+  color: #fff;
+}
+body.dark-mode button {
+  background: #2980b9;
+}
+
+
+/* ===== GLOBAL ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== DARK MODE ===== */
+body.dark,
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark .card,
+body.dark .billing-table,
+body.dark .settings-container,
+body.dark-mode .auth-container,
+body.dark-mode .modal-content {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #333;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  color: white;
+  margin: 0 10px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  background: #2c3e50;
+  color: white;
+  width: 220px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 12px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.sidebar ul li.active,
+.sidebar ul li:hover {
+  background: #34495e;
+}
+
+/* ===== MAIN CONTENT ===== */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+}
+
+main {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ===== CARDS ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== BILLING TABLE ===== */
+.billing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.billing-table th,
+.billing-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.billing-table th {
+  background: #4CAF50;
+  color: white;
+}
+
+/* ===== MODALS ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+  position: relative;
+}
+
+/* ===== LOGIN PAGE ===== */
+.login-container {
+  max-width: 360px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .billing-table th,
+  .billing-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container,
+  .settings-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .billing-table th,
+  .billing-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+}

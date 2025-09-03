@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Meter Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Required Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@2.0.0"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar collapsed">
+      <h2>⚡ Smart Meter</h2>
+      <ul>
+        <li class="active" data-page="home">🏠 <span>Dashboard</span></li>
+        <li data-page="billing">💰 <span>Billing</span></li>
+        <li data-page="history">📊 <span>History</span></li>
+        <li data-page="settings">⚙️ <span>Settings</span></li>
+        <li id="logoutBtn">🚪 <span><a href="/login.html">Logout</a></span></li>
+
+      </ul>
+    </aside>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="receipt-modal">
+      <div class="receipt-content" id="receiptContent">
+        <h2>Recharge Receipt</h2>
+        <p><strong>Transaction ID:</strong> <span id="txnId"></span></p>
+        <p><strong>Amount:</strong> ₦<span id="receiptAmount"></span></p>
+        <p><strong>Date:</strong> <span id="receiptDate"></span></p>
+        <p><strong>Status:</strong> Successful</p>
+        <button id="printReceipt">🖨 Print</button>
+        <button id="downloadReceipt">⬇ Download</button>
+        <button id="closeReceipt">❌ Close</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Navbar -->
+      <header class="navbar">
+       
+        <h1 id="pageTitle">Dashboard</h1>
+        <p id="userEmailDisplay"></p>
+      </header>
+
+      <!-- Dashboard Page -->
+      <section id="home" class="page active">
+        <h2>Real-Time Energy Data</h2>
+        <div class="cards">
+          <div class="card"><h3>Voltage</h3><p id="voltage">-- V</p></div>
+          <div class="card"><h3>Current</h3><p id="current">-- A</p></div>
+          <div class="card"><h3>Power</h3><p id="power">-- W</p></div>
+          <div class="card"><h3>Energy</h3><p id="energy">-- kWh</p></div>
+          <div class="card"><h3>Frequency</h3><p id="frequency">-- Hz</p></div>
+          <div class="card"><h3>Power Factor</h3><p id="powerFactor">--</p></div>
+        </div>
+        <canvas id="energyChart"></canvas>
+        <div id="connectionStatus"><span>Disconnected</span></div>
+      </section>
+
+      <!-- Billing Page -->
+      <section id="billing" class="page">
+        <h2>Recharge Your Meter</h2>
+        <form id="rechargeForm">
+          <input type="number" id="amount" placeholder="Enter amount (₦)" required />
+          <button type="submit">Recharge</button>
+        </form>
+        <p id="rechargeMessage" class="success"></p>
+        <h3>Billing History</h3>
+        <table id="billingHistory" class="billing-table">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Amount (₦)</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="4">No transactions yet.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- History Page -->
+      <section id="history" class="page">
+        <h2>Energy & Billing History</h2>
+        <div class="chart-container"><canvas id="historyEnergyChart"></canvas></div>
+        <h3>Billing Transactions</h3>
+        <table class="billing-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount (₦)</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="billingHistoryTable"></tbody>
+        </table>
+      </section>
+
+      <!-- Settings Page -->
+      <section id="settings" class="page">
+        <div class="settings-container">
+          <h2>Settings</h2>
+          <form id="settingsForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone No.</label>
+              <input type="tel" id="phone" placeholder="Enter your phone number" required />
+            </div>
+            <div class="form-group theme-toggle">
+              <label>Theme</label>
+              <input type="checkbox" id="themeToggle" />
+              <span>Dark Mode</span>
+            </div>
+            <button type="submit">Save Changes</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+<script>
+  // Ensure user is logged in
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // Display user email in the navbar
+      document.getElementById("userEmailDisplay").innerText = "Logged in as: " + user.email;
+    } else {
+      // Redirect to login if no user
+      window.location.href = "login.html";
+    }
+  });
+
+  // Logout button handling
+  document.getElementById("logoutBtn").addEventListener("click", function (e) {
+    e.preventDefault();
+    firebase.auth().signOut().then(() => {
+      localStorage.removeItem("users"); // clear local data if any
+      window.location.href = "login.html"; // go back to login
+    }).catch((error) => {
+      console.error("Logout Error:", error);
+      alert("Logout failed. Try again.");
+    });
+  });
+</script>
+
+
+
+  <!-- External Scripts -->
+  <script src="sidebar.js"></script>
+  <script src="charts.js"></script>
+  <script src="billing.js"></script>
+  <script src="settings.js"></script>
+  <script src="realtime-data.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="dash.js"></script>
+</body>
+</html>

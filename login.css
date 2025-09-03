@@ -1,0 +1,192 @@
+/* === BODY & GENERAL === */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+/* === AUTH CONTAINER === */
+.auth-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode .auth-container {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.2s, background 0.3s, color 0.3s;
+}
+
+body.dark-mode .auth-container input {
+  background: #2c2c2c;
+  border: 1px solid #555;
+  color: #fff;
+}
+
+.auth-container input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.auth-container button:hover {
+  background: #2980b9;
+}
+
+/* === AUTH LINKS === */
+.auth-links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-links a {
+  color: #3498db;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+/* === MODALS === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode .modal-content {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.2s, background 0.3s, color 0.3s;
+}
+
+body.dark-mode .modal-content input {
+  background: #2c2c2c;
+  border: 1px solid #555;
+  color: #fff;
+}
+
+.modal-content input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.modal-content button:hover {
+  background: #2980b9;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+}
+
+body.dark-mode .modal-content .close {
+  color: #fff;
+}
+
+/* === ERROR & SUCCESS MESSAGES === */
+.error {
+  color: #ff4d4d;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.success {
+  color: green;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 480px) {
+  .auth-container, .modal-content {
+    padding: 20px;
+  }
+}
